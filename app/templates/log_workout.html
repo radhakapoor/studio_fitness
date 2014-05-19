@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<br>		  
+<a href="profile">Profile Page</a>
+<a href="logout">Log Out</a>	
+<br>
+  <div class="jumbo">
+	  <h2>Log a Studio Workout!</h2>
+	  <h3>1. When did you do your workout?</h3>
+	  <br>
+	  [Insert calendar]
+	  <br> 	  
+	  <h3>2. Which Studio?</h3>
+	  <select>
+		  <option value="Soul Cycle Tribeca">Soul Cycle Tribeca</option>
+		  <option value="Soul Cycle UWS">Soul Cycle UWS</option>
+		  <option value="Barry's Bootcamp Tribeca">Barry's Bootcamp Tribeca</option>
+	  </select>
+	  <br>
+	  
+	  <h3>3. Which Instructor?</h3>
+	  <select>
+		  <option value="Charlee Atkins">Charlee Atkins</option>
+		  <option value="Janet Fitzgerald">Janet Fitzgerald</option>
+		  <option value="Noah Neiman">Noah Neiman</option>
+	  </select>
+	  <br>
+	  <h3>4. How did you feel before class?</h3>
+	  
+	  <input type='radio' name='before_button' value='button'>1 I want to curl up in bed
+	  <input type='radio' name='before_button' value='button'>2
+	  <input type='radio' name='before_button' value='button'>3
+	  <input type='radio' name='before_button' value='button'>4
+	  <input type='radio' name='before_button' value='button'>5
+	  <input type='radio' name='before_button' value='button'>6
+	  <input type='radio' name='before_button' value='button'>7
+	  <input type='radio' name='before_button' value='button'>8
+	  <input type='radio' name='before_button' value='button'>9
+	  <input type='radio' name='before_button' value='button'>10 Firing on all cylinders 
+	  
+	    
+	  
+	  <h3>5. How did you feel during class?</h3>
+	  
+	  <input type='radio' name='during_button' value='button'>1 I wanted to walk out!
+	  <input type='radio' name='during_button' value='button'>2
+	  <input type='radio' name='during_button' value='button'>3
+	  <input type='radio' name='during_button' value='button'>4
+	  <input type='radio' name='during_button' value='button'>5
+	  <input type='radio' name='during_button' value='button'>6
+	  <input type='radio' name='during_button' value='button'>7
+	  <input type='radio' name='during_button' value='button'>8
+	  <input type='radio' name='during_button' value='button'>9
+	  <input type='radio' name='during_button' value='button'>10 Bring on the double!
+	  	  
+	  	  
+	  
+	  <h3>6. How did you feel 3 hours after after class?</h3>	
+		  
+	  <input type='radio' name='after_button' value='button'>1 I was in bed!
+	  <input type='radio' name='after_button' value='button'>2
+	  <input type='radio' name='after_button' value='button'>3
+	  <input type='radio' name='after_button' value='button'>4
+	  <input type='radio' name='after_button' value='button'>5
+	  <input type='radio' name='after_button' value='button'>6
+	  <input type='radio' name='after_button' value='button'>7
+	  <input type='radio' name='after_button' value='button'>8
+	  <input type='radio' name='after_button' value='button'>9
+	  <input type='radio' name='after_button' value='button'>10 I'm energized and recovered
+	  
+  
+	  
+{% endblock %}
