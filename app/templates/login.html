@@ -1,18 +1,17 @@
 {% extends "base.html" %}
+
 {% block content %}
-    	
-	<form action="{{ url_for('login')}}" method=post>
-		<dl>
-			<dt>Username:
-			<dd><input type=text name=username>
-			<dt>Password:
-			<dd><input type=password name=password>
-			<dd><input type=submit value=Login>
-		</dl>
-	</form>
+<a href="{{ url_for('home') }}">home</a>
+
+<div style="color:red">
+	{{ error }}
+</div>
+<br>
+
+<form method="POST">
+	email : <input type="text" name="email"></input>
+	<input type="submit" value="login"></input>
+</form>
+
 {% endblock %}
-
-
-
-
 

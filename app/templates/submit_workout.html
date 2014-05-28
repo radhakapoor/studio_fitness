@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if error %}
+<div style="color:red"> {{ error }}
+{% else %}
+Congrats! You just logged a workout at {{ studio }} with {{ instructor }} and you felt {{ before }} before the workout, {{ during }} during the workout and {{ after }} after the workout. 
+{% endif %}
+
+{% endblock %}

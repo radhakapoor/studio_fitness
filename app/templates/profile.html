@@ -2,7 +2,7 @@
 {% block content %}
   <div class="Jumbo">
 	  <a href="logworkout">Log Workout</a>
-	  <a href="logout">Log Out</a>
+	  
 	  <h3>Your Studio Fitness Profile</h3>
 	  
 	  User Avatar
@@ -10,18 +10,32 @@
 	  
 	  Date
 	  <br>
-	  Studio
-	  <br>
-	  Instructor
 	  <br>
 	  
-	  How you felt before:
-	  <br>
-	  How you felt during:
-	  <br>
-	  How you felt after:
-	  <br>
+YOUR LOGGED WORKOUTS:
+<br>
+<br>	  
+{% for w in workouts %}	
+  
+Studio:
+{{ w.studio }}
+<br>
+Instructor:
+{{ w.instructor }}
+<br>	  
+How you felt before:
+{{ w.before }}
+<br>
+How you felt during:
+{{ w.during }}
+<br>
+How you felt after:
+{{ w.after }}
+<br>
+<br>
+	 
 	  
+{% endfor %}	  
 {% endblock %}
   
 

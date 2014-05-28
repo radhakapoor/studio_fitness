@@ -1,0 +1,9 @@
+# example-environment.txt
+#
+# This file should be copied to something that is .gitignored,
+# like myenvironment.txt.  Then execute it by running 
+# source myenvironment.txt.
+
+
+export DATABASE_URL=postgresql+psycopg2://you@localhost/studio_fitness
+export SECRET_KEY=shouldNotBeInGit

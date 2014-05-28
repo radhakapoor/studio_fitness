@@ -1,2 +1,5 @@
 .DS_Store
 *.pyc
+secret_key.py
+.env
+venv

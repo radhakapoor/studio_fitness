@@ -1,56 +1,79 @@
-from flask import Flask
-from flask import Flask, render_template, request, session, redirect, url_for, flash
+
+from app import app, db, lm 
+from flask import Flask, render_template, request, session, redirect, flash, g
+import models
+import flask
 import os
-import sqlite3
+from flask.ext.sqlalchemy import SQLAlchemy
+import config
+from flask.ext.login import LoginManager, url_for, login_user, logout_user, current_user, login_required
 
-
-app = Flask(__name__)
-app.config.from_object(__name__)
-
-app.config.update(dict(
-    DATABASE=os.path.join(app.root_path, 'fitness.db'),
-    DEBUG=True,
-    SECRET_KEY='fitness',
-    USERNAME='radhakapoor',
-    PASSWORD='thinkful'
-))
-app.config.from_envvar('FLASKR_SETTINGS', silent=True)
-
-#hard code the username and password? 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
-            error = 'Invalid Username'
-        elif request.form['password'] != app.config['PASSWORD']:
-            error = "Invalid Password"
-        else:
-            session['logged_in'] = True
-            flash('You were logged in')
-            return redirect(url_for('log_workout'))
-    return render_template('login.html', error=error)
-
-
+#is this where the query is made to the db which loads their data using a cookie set previously? 
+@lm.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+    
+@app.before_request
+def before_request():
+    g.user = current_user
+    
+@app.route('/login', methods=["GET"])
+def get_login():
+    if g.user:
+        if not g.user.is_anonymous():
+            return redirect("/logworkout")
+    return render_template("login.html")
+    
+@app.route('/login', methods=["POST"])
+def post_login():
+    remember_me = request.form.get("remember_me")
+    email = request.form.get("email")
+    user = User.query.filter(User.email == email).first()
+    if user:
+        login_user(user, remember = remember_me)
+        return redirect("/logworkout")
+    else:
+        return render_template("login.html", error="Invalid login")        
+        
 @app.route('/')   
 def home():
   return render_template('home.html')
+  
+@app.route('/logworkout', methods=['GET'])
+@login_required
+def get_logworkout():
+    return render_template('log_workout.html', user=g.user)
 
-
-@app.route('/logworkout')
-def log_workout():
-    return render_template('log_workout.html')
-    
+@app.route('/logworkout', methods=['POST'])
+@login_required
+def post_logworkout():
+    try:
+        studio = (flask.request.form['studio'])
+        instructor = (flask.request.form['instructor'])
+        before = (flask.request.form['before'])
+        during = (flask.request.form['during'])
+        after = (flask.request.form['after'])
+        workout = Workout(studio=studio, instructor=instructor, before=before, during=during, after=after)
+        g.user.workouts.append(workout)
+        #db.session.add(workout)
+        db.session.commit()
+    except:
+        return render_template("submit_workout.html", studio="", instructor="", before="", during="", after="", error="Your workout log wasn't complete! Please try again!")    
+    return render_template("submit_workout.html", studio=studio, instructor=instructor, before=before, during=during, 
+        after=after, error="")
+      
 @app.route('/profile')
+@login_required
 def profile():
-    return render_template('profile.html')
+    workouts = g.user.workouts
+    #workouts = models.Workout.query.all()
+    return render_template('profile.html', workouts=workouts, user=g.user)
     
 @app.route('/logout')
+@login_required
 def logout():
-    session.pop('logged_in', None)
-    flash('You were logged out')
-    return redirect(url_for('login'))
-    
+    logout_user()
+    return redirect(url_for('home'))      
 
  
 if __name__ == '__main__':
