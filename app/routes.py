@@ -15,7 +15,8 @@ def load_user(id):
     
 @app.before_request
 def before_request():
-    g.user = current_user
+    #g.user = current_user
+    g.user = models.User.query.get(1)
     
 @app.route('/login', methods=["GET"])
 def get_login():
@@ -40,12 +41,12 @@ def home():
   return render_template('home.html')
   
 @app.route('/logworkout', methods=['GET'])
-@login_required
+#@login_required
 def get_logworkout():
     return render_template('log_workout.html', user=g.user)
 
 @app.route('/logworkout', methods=['POST'])
-@login_required
+#@login_required
 def post_logworkout():
     try:
         studio = (flask.request.form['studio'])
@@ -63,7 +64,7 @@ def post_logworkout():
         after=after, error="")
       
 @app.route('/profile')
-@login_required
+#@login_required
 def profile():
     workouts = g.user.workouts
     #workouts = models.Workout.query.all()

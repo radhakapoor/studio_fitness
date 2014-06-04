@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="Jumbo">
-	  <a href="logworkout">Log Workout</a>
+	  <a href="{{ url_for('get_logworkout') }}">log workout</a>
+	  <a href="{{ url_for('logout') }}">logout</a>
 	  
 	  <h3>Your Studio Fitness Profile</h3>
 	  

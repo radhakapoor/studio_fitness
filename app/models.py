@@ -10,7 +10,7 @@ class Workout(db.Model):
     before = db.Column(Integer)
     during = db.Column(Integer)
     after = db.Column(Integer)
-    owner_id = db.Column(Integer, db.ForeignKey('user.id'))
+    owner_id = db.Column(Integer, db.ForeignKey('app_user.id'))
     
     def __init__(self, studio, instructor, before, during, after):
         self.studio = studio
@@ -23,7 +23,7 @@ class Workout(db.Model):
         return '<I worked out at {} with {}. I felt {} before, {} during and {} after'.format(self.studio, self.instructor, self.before, self.during, self.after)
         
 class User(db.Model):
-    __tablename__='user'
+    __tablename__='app_user'
     id = db.Column(Integer, primary_key=True)
     email = db.Column(String(200))
     workouts = db.relationship("Workout", backref="owner", lazy="dynamic")
