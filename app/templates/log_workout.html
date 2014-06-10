@@ -13,9 +13,10 @@
 	  <br>
 	  [Insert calendar]
 	  <br> 
-	<form action="" method='post'>	  
+	<form action="{{ url_for('post_logworkout') }}" method='post'>	  
 	  <h3>2. Which Studio?</h3>
 	  <select name='studio'>
+		  <option value='Select a Studio'>Select a Studio</option>		  
 		  <option value='SC-Tribeca'>Soul Cycle Tribeca</option>
 		  <option value='SC-UWS'>Soul Cycle UWS</option>
 		  <option value='BB-Tribeca'>Barry's Bootcamp Tribeca</option>
@@ -23,14 +24,20 @@
 		  <option value='Kula-Tribeca'>Kula Yoga Tribeca</option>
 	  </select>
 	  <br>
-	  
+	  	  
+<div style="color:red">{{ studio_error }}</div>  
+	  	  
 	  <h3>3. Which Instructor?</h3>
 	  <select name='instructor'>
+		  <option value='Select an Instructor'>Select an Instructor</option>
 		  <option value='Charlee-Atkins'>Charlee Atkins</option>
 		  <option value='Janet-Fitzgerald'>Janet Fitzgerald</option>
 		  <option value='Noah-Neiman'>Noah Neiman</option>
 	  </select>
 	  <br>
+	   
+<div style="color:red">{{ instructor_error }}</div>
+	  
 	  <h3>4. How did you feel before class?</h3>
 	  
 	  <input type='radio' name='before' value='1'>1 I want to curl up in bed
@@ -42,7 +49,10 @@
 	  <input type='radio' name='before' value='7'>7
 	  <input type='radio' name='before' value='8'>8
 	  <input type='radio' name='before' value='9'>9
-	  <input type='radio' name='before' value='10'>10 Firing on all cylinders 
+	  <input type='radio' name='before' value='10'>10 Firing on all cylinders
+	  <br>
+	  <br>	  
+<div style="color:red">{{ before_error }}</div>
 	  
 	    
 	  
@@ -58,10 +68,12 @@
 	  <input type='radio' name='during' value='8'>8
 	  <input type='radio' name='during' value='9'>9
 	  <input type='radio' name='during' value='10'>10 Bring on the double!
-	  	  
+	  <br>
+	  <br>
+<div style="color:red"> {{ during_error }}</div> 	  
 	  	  
 	  
-	  <h3>6. How did you feel 3 hours after after class?</h3>	
+	  <h3>6. How did you feel 3 hours after class?</h3>	
 		  
 	  <input type='radio' name='after' value='1'>1 I was in bed!
 	  <input type='radio' name='after' value='2'>2
@@ -73,8 +85,12 @@
 	  <input type='radio' name='after' value='8'>8
 	  <input type='radio' name='after' value='9'>9
 	  <input type='radio' name='after' value='10'>10 I'm energized and recovered
-	  
-	  <br>
+      <br>
+	  <br>	  
+<div style="color:red"> {{ after_error }}<div>
+
+<div style="color:red"> {{ general_error }}</div>	  
+	 
 	  <input type='submit' value='submit'>
 	 </form>
 	  

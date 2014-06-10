@@ -11,6 +11,6 @@ lm = LoginManager()
 lm.init_app(app)
 lm.login_view='get_login'
 
-from app import routes, models
+from app import routes#, models
 
 
