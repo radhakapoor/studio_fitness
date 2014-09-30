@@ -1,4 +1,4 @@
-This is the first commit for a fitness application for NY based workout studios. 
+This is the first commit for a Flask application for workouts in NY based workout studios. 
 
 White pages for Home, Login, Log Workout and User Profile. 
 
